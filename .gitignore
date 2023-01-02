@@ -1,0 +1,12 @@
+# node modules
+/node_modules
+
+# node stuff
+/package-lock.json
+/yarn-error.log
+
+# OSX
+.DS_Store
+
+# VS Code
+.vscode
