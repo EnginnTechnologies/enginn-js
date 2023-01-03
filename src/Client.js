@@ -33,16 +33,27 @@ class Client {
   }
 
   headers() {
-    return {
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
+    if(this.apiToken) headers.Authorization = `Bearer ${this.apiToken}`;
+    return headers;
   }
 
   async get(path, params = {}, options = {}) {
     const request = new Request(this.url(path, params), {
       method: 'GET',
       headers: { ...this.headers(), ...options.headers }
+    });
+    return this.#send(request);
+  }
+
+  async post(path, params, options = {}) {
+    const request = new Request(this.url(path), {
+      method: 'POST',
+      headers: { ...this.headers(), ...options.headers },
+      body: JSON.stringify(params)
     });
     return this.#send(request);
   }

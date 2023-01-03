@@ -55,6 +55,19 @@ describe('Client', () => {
 
     // we use the 'get' method to call '#send', since it is a private method
 
+    it('does not authenticate if no API token is provided', async () => {
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Authorization'))));
+      const response = await client.get('/');
+      expect(response).toEqual(null);
+    });
+
+    it('authenticates if an API token is provided', async () => {
+      client.apiToken = 'foo';
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Authorization'))));
+      const response = await client.get('/');
+      expect(response).toEqual('Bearer foo');
+    });
+
     it('resolves with data on success', async () => {
       fetch.mockResponseOnce(JSON.stringify({ foo: 'bar' }));
       const response = await client.get('/');
@@ -66,7 +79,7 @@ describe('Client', () => {
       expect(client.get('/')).rejects.toThrow(Errors.UnauthorizedError);
     });
 
-    it('rejects with error on auth failure', async () => {
+    it('rejects with error on 404 error', async () => {
       fetch.mockResponseOnce('', { status: 404 });
       expect(client.get('/')).rejects.toThrow(Errors.ResourceNotFound);
     });
@@ -84,6 +97,23 @@ describe('Client', () => {
     it('allows to override headers', async () => {
       fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
       const response = await client.get('/', {}, { headers: { Bar: 'foo' } });
+      expect(response).toEqual('foo');
+    });
+  });
+
+  describe('.post', () => {
+    const client = new Client();
+    client.baseUrl = 'https://mock/';
+
+    it('sends a body', async () => {
+      fetch.mockResponseOnce(req => req.json().then(body => JSON.stringify(body)));
+      const response = await client.post('/', { data: 42 });
+      expect(response.data).toEqual(42);
+    });
+
+    it('allows to override headers', async () => {
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
+      const response = await client.post('/', {}, { headers: { Bar: 'foo' } });
       expect(response).toEqual('foo');
     });
   });

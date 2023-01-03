@@ -54,8 +54,6 @@ class Resource {
    */
   async fetch() {
     const response = await this._request('GET');
-    if(response.status >= 400) throw response.status;
-
     this.#syncPropertiesWith(response.result);
     return this;
   }
@@ -68,8 +66,6 @@ class Resource {
    */
   async save() {
     const response = await this._request(this.attributes.id ? 'PATCH' : 'POST');
-    if(response.status >= 400) throw response.status;
-
     this.#syncPropertiesWith(response.result);
     return this;
   }
@@ -81,9 +77,7 @@ class Resource {
    * @returns {Promise} A promise that resolves or fails with an error message
    */
   async destroy() {
-    const response = await this._request('DELETE');
-    if(response.status >= 400) throw response.status;
-
+    await this._request('DELETE');
     return this;
   }
 
@@ -101,7 +95,9 @@ class Resource {
    * @returns {string} The full path to that resource
    */
   _route() {
-    return `${this.project._route()}/${this.constructor.pathName}/${this.attributes.id}`;
+    let url = `${this.project._route()}/${this.constructor.pathName}`;
+    if(this.attributes.id) url += `/${this.attributes.id}`;
+    return url;
   }
 
   /**
@@ -135,6 +131,7 @@ class Resource {
    * @param {string} method HTTP method to be used
    * @return {Promise} The fetch promise
    * @see {@link Client#get}
+   * @see {@link Client#post}
    * @see {@link Client#patch}
    * @see {@link Client#delete}
    */
