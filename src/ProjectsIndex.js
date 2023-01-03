@@ -16,7 +16,10 @@ class ProjectsIndex extends ResourceIndex {
    * @param {Client} client The client to use with the indexed projects and resources
    */
   constructor(client) {
-    super();
+    // small hack to trick inherited constructor
+    const project = new Project();
+    super(project);
+
     this.project = this;
     this.client = client;
   }

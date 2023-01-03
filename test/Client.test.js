@@ -8,44 +8,44 @@ beforeEach(() => {
 
 describe('Client', () => {
   describe('constructor', () => {
-    test('allows no options', () => {
+    it('allows no options', () => {
       const client = new Client();
-      return expect(typeof client).toEqual('object');
+      expect(client).toBeInstanceOf(Client);
     });
 
-    test('allows to specify apiToken', () => {
+    it('allows to specify apiToken', () => {
       const client = new Client({ apiToken: 'foo' });
-      return expect(client.apiToken).toEqual('foo');
+      expect(client.apiToken).toEqual('foo');
     });
   });
 
   describe('.url', () => {
     const client = new Client();
 
-    test('defines a function', () => {
+    it('defines a function', () => {
       expect(typeof client.url).toBe('function');
     });
 
-    test('handles empty path', () => {
-      return expect(client.url('/')).toEqual('https://app.enginn.tech/api/v1/');
+    it('handles empty path', () => {
+      expect(client.url('/')).toEqual('https://app.enginn.tech/api/v1/');
     });
 
-    test('uses a default baseUrl', () => {
-      return expect(client.url('foo')).toEqual('https://app.enginn.tech/api/v1/foo');
+    it('uses a default baseUrl', () => {
+      expect(client.url('foo')).toEqual('https://app.enginn.tech/api/v1/foo');
     });
 
-    test('handles leading slash', () => {
-      return expect(client.url('/foo')).toEqual('https://app.enginn.tech/api/v1/foo');
+    it('handles leading slash', () => {
+      expect(client.url('/foo')).toEqual('https://app.enginn.tech/api/v1/foo');
     });
 
-    test('allows a custom baseUrl', () => {
+    it('allows a custom baseUrl', () => {
       client.baseUrl = 'https://custom.bar';
-      return expect(client.url('foo')).toEqual('https://custom.bar/foo');
+      expect(client.url('foo')).toEqual('https://custom.bar/foo');
     });
 
-    test('handles trailing slash', () => {
+    it('handles trailing slash', () => {
       client.baseUrl = 'https://custom.bar/';
-      return expect(client.url('foo')).toEqual('https://custom.bar/foo');
+      expect(client.url('foo')).toEqual('https://custom.bar/foo');
     });
   });
 

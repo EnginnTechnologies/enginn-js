@@ -1,3 +1,5 @@
+import Resource from './Resource';
+
 /**
  * @class Resource
  *
@@ -26,6 +28,8 @@ class ResourceIndex {
    * @param {Project} project The parent project of the indexed resource
    */
   constructor(project) {
+    if(!(project instanceof Resource)) throw new TypeError('project');
+
     this.project = project;
     this.filters = {};
     this.pagination = { current: 1 };
