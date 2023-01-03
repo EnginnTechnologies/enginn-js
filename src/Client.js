@@ -16,15 +16,15 @@ class Client {
    * Creates an instance of Client.
    *
    * @constructor
-   * @param {Object} options           The client properties
-   * @param {string} options.api_token The API token to use
+   * @param {Object} options          The client properties
+   * @param {string} options.apiToken The API token to use
    */
   constructor(options = {}) {
-    this.api_token = options.api_token;
+    this.apiToken = options.apiToken;
   }
 
   url(path) {
-    return `${this.baseUrl}/${path}`;
+    return `${this.baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
   }
 
   headers() {
