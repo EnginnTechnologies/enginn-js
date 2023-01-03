@@ -1,3 +1,4 @@
+import Errors from './Errors';
 import ProjectsIndex from './ProjectsIndex';
 
 /**
@@ -39,7 +40,7 @@ class Client {
       method: 'GET',
       headers: { ...this.headers(), ...options.headers }
     });
-    return fetch(request).then(response => response.json());
+    return this.#send(request);
   }
 
   async patch(path, params, options = {}) {
@@ -48,7 +49,7 @@ class Client {
       headers: { ...this.headers(), ...options.headers },
       body: JSON.stringify(params)
     });
-    return fetch(request).then(response => response.json());
+    return this.#send(request);
   }
 
   async delete(path, options = {}) {
@@ -56,7 +57,19 @@ class Client {
       method: 'DELETE',
       headers: { ...this.headers(), ...options.headers }
     });
-    return fetch(request).then(response => response.json());
+    return this.#send(request);
+  }
+
+  async #send(request) {
+    return fetch(request).then(response => {
+      if(!response.ok) throw Errors.fetchResponseError(response);
+
+      return response.json();
+    }).catch(error => {
+      if(error instanceof Errors.EnginnError) throw error;
+
+      throw new Errors.FetchError(`${error}`);
+    });
   }
 
   /**

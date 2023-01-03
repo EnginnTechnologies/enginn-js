@@ -1,4 +1,5 @@
 import Client from '../src/Client';
+import Errors from '../src/Errors';
 
 beforeEach(() => {
   fetch.resetMocks();
@@ -47,9 +48,11 @@ describe('Client', () => {
     });
   });
 
-  describe('.get', () => {
+  describe('.#send', () => {
     const client = new Client();
     client.baseUrl = 'https://mock/';
+
+    // we use the 'get' method to call '#send', since it is a private method
 
     it('resolves with data on success', async () => {
       fetch.mockResponseOnce(JSON.stringify({ foo: 'bar' }));
@@ -57,10 +60,52 @@ describe('Client', () => {
       expect(response.foo).toEqual('bar');
     });
 
-    it('rejects with error on failure', async () => {
-      const error = new Error('API is down');
-      fetch.mockReject(error);
-      expect(client.get('/')).rejects.toEqual(error);
+    it('rejects with error on auth failure', async () => {
+      fetch.mockResponseOnce('', { status: 401 });
+      expect(client.get('/')).rejects.toThrow(Errors.UnauthorizedError);
+    });
+
+    it('rejects with error on auth failure', async () => {
+      fetch.mockResponseOnce('', { status: 404 });
+      expect(client.get('/')).rejects.toThrow(Errors.ResourceNotFound);
+    });
+
+    it('rejects with error on response interpretation error', async () => {
+      fetch.mockResponseOnce('{misformedjson');
+      expect(client.get('/')).rejects.toThrow(Errors.FetchError);
+    });
+  });
+
+  describe('.get', () => {
+    const client = new Client();
+    client.baseUrl = 'https://mock/';
+
+    it('allows to override headers', async () => {
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
+      const response = await client.get('/', { headers: { Bar: 'foo' } });
+      expect(response).toEqual('foo');
+    });
+  });
+
+  describe('.patch', () => {
+    const client = new Client();
+    client.baseUrl = 'https://mock/';
+
+    it('allows to override headers', async () => {
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
+      const response = await client.patch('/', {}, { headers: { Bar: 'foo' } });
+      expect(response).toEqual('foo');
+    });
+  });
+
+  describe('.delete', () => {
+    const client = new Client();
+    client.baseUrl = 'https://mock/';
+
+    it('allows to override headers', async () => {
+      fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
+      const response = await client.delete('/', { headers: { Bar: 'foo' } });
+      expect(response).toEqual('foo');
     });
   });
 });
