@@ -24,8 +24,12 @@ class Client {
     this.apiToken = options.apiToken;
   }
 
-  url(path) {
-    return `${this.baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+  url(path, params = {}) {
+    let url = `${this.baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+    if(Object.keys(params).length > 0) {
+      url += '?' + (new URLSearchParams(params)).toString();
+    }
+    return url;
   }
 
   headers() {
@@ -35,8 +39,8 @@ class Client {
     };
   }
 
-  async get(path, options = {}) {
-    const request = new Request(this.url(path), {
+  async get(path, params = {}, options = {}) {
+    const request = new Request(this.url(path, params), {
       method: 'GET',
       headers: { ...this.headers(), ...options.headers }
     });

@@ -83,7 +83,7 @@ describe('Client', () => {
 
     it('allows to override headers', async () => {
       fetch.mockResponseOnce(req => Promise.resolve(JSON.stringify(req.headers.get('Bar'))));
-      const response = await client.get('/', { headers: { Bar: 'foo' } });
+      const response = await client.get('/', {}, { headers: { Bar: 'foo' } });
       expect(response).toEqual('foo');
     });
   });

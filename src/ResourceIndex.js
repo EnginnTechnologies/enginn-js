@@ -33,6 +33,7 @@ class ResourceIndex {
     this.project = project;
     this.filters = {};
     this.pagination = { current: 1 };
+    this.collection = [];
   }
 
   /**
@@ -53,8 +54,21 @@ class ResourceIndex {
       this.collection.forEach(callback);
     }
 
-    this.pagination = { current: 1 };
+    this.pagination.current = 1;
     return this;
+  }
+
+  /**
+   * Calls a callback function on each resource of the index to build an array of results.
+   * It fetches on the API new resources whenever required.
+   *
+   * @param {Object} callback The function to call on each resource
+   * @return {Array} The index itself (useful for chaining)
+   */
+  async map(callback) {
+    const result = [];
+    await this.forEach(resource => result.push(callback.call(this, resource)));
+    return result;
   }
 
   /**
@@ -71,13 +85,17 @@ class ResourceIndex {
 
   /**
    * Clone the index to create a whole new object.
+   * It resets the collection
    *
    * @private
    * @returns {ResourceIndex} A clone index
    */
   clone() {
-    // TODO: test this
-    return Object.assign(Object.create(this), this);
+    return Object.assign(Object.create(this), {
+      collection: [],
+      filters: JSON.parse(JSON.stringify(this.filters)),
+      pagination: { ...this.pagination }
+    });
   }
 
   /**
@@ -108,6 +126,7 @@ class ResourceIndex {
 
   /**
    * Clone the index to change filters.
+   * This merges filters, so chaining where(...).where(...) will combine filters
    *
    * @private
    * @param {Object} filters Filters as you would use them in the `q` object with the API.
@@ -161,6 +180,13 @@ class ResourceIndex {
       page: this.pagination.current,
       q: this.filters
     };
+
+    Object.entries(params.q).forEach(([key, value]) => {
+      if(value === null || value === undefined) {
+        delete params.q[key];
+      }
+    });
+    if(Object.keys(params.q).length < 1) delete params.q;
     Object.entries(params).forEach(([key, value]) => {
       if(value === null || value === undefined) {
         delete params[key];
