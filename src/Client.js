@@ -1,5 +1,6 @@
 import Errors from './Errors';
 import ProjectsIndex from './ProjectsIndex';
+import Utils from './Utils';
 
 /**
  * @class Client
@@ -27,7 +28,7 @@ class Client {
   url(path, params = {}) {
     let url = `${this.baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
     if(Object.keys(params).length > 0) {
-      url += '?' + (new URLSearchParams(params)).toString();
+      url += `?${Utils.buildQueryParams(params)}`;
     }
     return url;
   }

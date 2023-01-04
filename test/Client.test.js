@@ -47,6 +47,14 @@ describe('Client', () => {
       client.baseUrl = 'https://custom.bar/';
       expect(client.url('foo')).toEqual('https://custom.bar/foo');
     });
+
+    it('handles params', () => {
+      client.baseUrl = 'https://custom.bar/';
+      expect(client.url('/foo', { a: 42 })).toEqual('https://custom.bar/foo?a=42');
+      expect(client.url('/foo', { b: [1, 2] })).toEqual('https://custom.bar/foo?b[0]=1&b[1]=2');
+      expect(client.url('/foo', { c: { d: 5 } })).toEqual('https://custom.bar/foo?c[d]=5');
+      expect(client.url('/foo', { c: { d: [5, 6], e: { f: 7 } } })).toEqual('https://custom.bar/foo?c[d][0]=5&c[d][1]=6&c[e][f]=7');
+    });
   });
 
   describe('.#send', () => {
