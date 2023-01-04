@@ -1,13 +1,13 @@
 import Project from './Project';
-import ResourceIndex from './ResourceIndex';
+import ResourcesIndex from './ResourcesIndex';
 
 /**
  * @class ProjectsIndex
- * @see {@link ResourceIndex}
+ * @see {@link ResourcesIndex}
  */
-class ProjectsIndex extends ResourceIndex {
+class ProjectsIndex extends ResourcesIndex {
   /**
-   * @see {@link ResourceIndex#resource}
+   * @see {@link ResourcesIndex#resource}
    */
   static resource = Project;
 
@@ -25,7 +25,7 @@ class ProjectsIndex extends ResourceIndex {
   }
 
   /**
-   * @see {@link ResourceIndex#fetch}
+   * @see {@link ResourcesIndex#fetch}
    */
   async fetch() {
     const response = await this._request();
@@ -35,7 +35,7 @@ class ProjectsIndex extends ResourceIndex {
 
   /**
    * @protected
-   * @see {@link ResourceIndex#_route}
+   * @see {@link ResourcesIndex#_route}
    */
   _route() {
     return 'projects';

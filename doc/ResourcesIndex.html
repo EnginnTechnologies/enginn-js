@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ResourceIndex</title>
+    <title>JSDoc: Class: ResourcesIndex</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ResourceIndex</h1>
+    <h1 class="page-title">Class: ResourcesIndex</h1>
 
     
 
@@ -28,18 +28,18 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ResourceIndex<span class="signature">(project)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ResourcesIndex<span class="signature">(project)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Resource</p>
-<p>A ResourceIndex is a collection of fetchable <a href="Resource.html">Resource</a>.</p>
-<p>It can be filtered and paginated through the chainable methods ResourceIndex#per,
-ResourceIndex#page, and ResourceIndex#where.
+            <div class="class-description"><p>ResourcesIndex</p>
+<p>A ResourcesIndex is a collection of fetchable <a href="Resource.html">Resource</a>.</p>
+<p>It can be filtered and paginated through the chainable methods ResourcesIndex#per,
+ResourcesIndex#page, and ResourcesIndex#where.
 It also provides methods to iterate on the collection.</p>
-<p>Actual API requests are only issued when <a href="ResourceIndex.html#first">ResourceIndex#first</a> or
-<a href="ResourceIndex.html#forEach">ResourceIndex#forEach</a> methods are called. While <a href="ResourceIndex.html#forEach">ResourceIndex#forEach</a>-ing,
+<p>Actual API requests are only issued when <a href="ResourcesIndex.html#first">ResourcesIndex#first</a> or
+<a href="ResourcesIndex.html#forEach">ResourcesIndex#forEach</a> methods are called. While <a href="ResourcesIndex.html#forEach">ResourcesIndex#forEach</a>-ing,
 new API request will be issued when the end of a page is reached.
-Note that when using ResourceIndex#page, only the given page is reached for.
-One can also force fetching manually using <a href="ResourceIndex.html#fetch">ResourceIndex#fetch</a>.</p></div>
+Note that when using ResourcesIndex#page, only the given page is reached for.
+One can also force fetching manually using <a href="ResourcesIndex.html#fetch">ResourcesIndex#fetch</a>.</p></div>
         
     
 </header>
@@ -54,7 +54,7 @@ One can also force fetching manually using <a href="ResourceIndex.html#fetch">Re
     
 
     
-    <h4 class="name" id="ResourceIndex"><span class="type-signature"></span>new ResourceIndex<span class="signature">(project)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ResourcesIndex"><span class="type-signature"></span>new ResourcesIndex<span class="signature">(project)</span><span class="type-signature"></span></h4>
     
 
     
@@ -203,7 +203,7 @@ One can also force fetching manually using <a href="ResourceIndex.html#fetch">Re
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line25">line 25</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -317,7 +317,7 @@ takes.forEach((take) => console.log(take.character_name));</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line177">line 177</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -430,7 +430,7 @@ takes.forEach((take) => console.log(take.character_name));</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line166">line 166</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -541,7 +541,7 @@ wrapped in the corresponding <a href="Resource.html">Resource</a> subclass.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line147">line 147</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -652,7 +652,7 @@ It fetches on the API only that single element.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line80">line 80</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -710,7 +710,7 @@ It fetches on the API only that single element.</p>
     
 
     
-    <h4 class="name" id="forEach"><span class="type-signature">(async) </span>forEach<span class="signature">(callback)</span><span class="type-signature"> &rarr; {<a href="ResourceIndex.html">ResourceIndex</a>}</span></h4>
+    <h4 class="name" id="forEach"><span class="type-signature">(async) </span>forEach<span class="signature">(callback)</span><span class="type-signature"> &rarr; {<a href="ResourcesIndex.html">ResourcesIndex</a>}</span></h4>
     
 
     
@@ -812,7 +812,7 @@ It fetches on the API new resources whenever required.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line46">line 46</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line46">line 46</a>
     </li></ul></dd>
     
 
@@ -852,7 +852,7 @@ It fetches on the API new resources whenever required.</p>
     </dt>
     <dd>
         
-<span class="param-type"><a href="ResourceIndex.html">ResourceIndex</a></span>
+<span class="param-type"><a href="ResourcesIndex.html">ResourcesIndex</a></span>
 
 
     </dd>
@@ -972,7 +972,7 @@ It fetches on the API new resources whenever required.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line68">line 68</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -1078,7 +1078,7 @@ It fetches on the API new resources whenever required.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ResourceIndex.js.html">ResourceIndex.js</a>, <a href="ResourceIndex.js.html#line157">line 157</a>
+        <a href="ResourcesIndex.js.html">ResourcesIndex.js</a>, <a href="ResourcesIndex.js.html#line157">line 157</a>
     </li></ul></dd>
     
 
@@ -1146,13 +1146,13 @@ It fetches on the API new resources whenever required.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="Project.html">Project</a></li><li><a href="ProjectsIndex.html">ProjectsIndex</a></li><li><a href="Resource.html">Resource</a></li><li><a href="ResourceIndex.html">ResourceIndex</a></li><li><a href="Scene.html">Scene</a></li><li><a href="ScenesIndex.html">ScenesIndex</a></li><li><a href="Utils.html">Utils</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Client.html">Client</a></li><li><a href="Project.html">Project</a></li><li><a href="ProjectsIndex.html">ProjectsIndex</a></li><li><a href="Resource.html">Resource</a></li><li><a href="ResourcesIndex.html">ResourcesIndex</a></li><li><a href="Scene.html">Scene</a></li><li><a href="ScenesIndex.html">ScenesIndex</a></li><li><a href="Utils.html">Utils</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Jan 04 2023 01:09:54 GMT+0100 (heure normale d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Jan 04 2023 13:40:13 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

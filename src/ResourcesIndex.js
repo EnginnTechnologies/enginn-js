@@ -1,19 +1,19 @@
 import Resource from './Resource';
 
 /**
- * @class Resource
+ * @class ResourcesIndex
  *
- * A ResourceIndex is a collection of fetchable {@link Resource}.
+ * A ResourcesIndex is a collection of fetchable {@link Resource}.
  *
- * It can be filtered and paginated through the chainable methods {@link ResourceIndex#per},
- * {@link ResourceIndex#page}, and {@link ResourceIndex#where}.
+ * It can be filtered and paginated through the chainable methods {@link ResourcesIndex#per},
+ * {@link ResourcesIndex#page}, and {@link ResourcesIndex#where}.
  * It also provides methods to iterate on the collection.
  *
- * Actual API requests are only issued when {@link ResourceIndex#first} or
- * {@link ResourceIndex#forEach} methods are called. While {@link ResourceIndex#forEach}-ing,
+ * Actual API requests are only issued when {@link ResourcesIndex#first} or
+ * {@link ResourcesIndex#forEach} methods are called. While {@link ResourcesIndex#forEach}-ing,
  * new API request will be issued when the end of a page is reached.
- * Note that when using {@link ResourceIndex#page}, only the given page is reached for.
- * One can also force fetching manually using {@link ResourceIndex#fetch}.
+ * Note that when using {@link ResourcesIndex#page}, only the given page is reached for.
+ * One can also force fetching manually using {@link ResourcesIndex#fetch}.
  *
  * @property {class} resource The type of resources being indexed (a {@link Resource} subclass)
  *
@@ -22,7 +22,7 @@ import Resource from './Resource';
  * takes.forEach((take) => console.log(take.character_name));
  *
  */
-class ResourceIndex {
+class ResourcesIndex {
   /**
    * @constructor
    * @param {Project} project The parent project of the indexed resource
@@ -41,7 +41,7 @@ class ResourceIndex {
    * It fetches on the API new resources whenever required.
    *
    * @param {Object} callback The function to call on each resource
-   * @return {ResourceIndex} The index itself (useful for chaining)
+   * @return {ResourcesIndex} The index itself (useful for chaining)
    */
   async forEach(callback) {
     await this.fetch();
@@ -88,7 +88,7 @@ class ResourceIndex {
    * It resets the collection
    *
    * @private
-   * @returns {ResourceIndex} A clone index
+   * @returns {ResourcesIndex} A clone index
    */
   clone() {
     return Object.assign(Object.create(this), {
@@ -103,7 +103,7 @@ class ResourceIndex {
    *
    * @private
    * @param {number} page The page number
-   * @returns {ResourceIndex} A new index with updated pagination
+   * @returns {ResourcesIndex} A new index with updated pagination
    */
   page(page) {
     const newIndex = this.clone();
@@ -116,7 +116,7 @@ class ResourceIndex {
    *
    * @private
    * @param {number} per The number of items per page
-   * @returns {ResourceIndex} A new index with updated pagination
+   * @returns {ResourcesIndex} A new index with updated pagination
    */
   per(per) {
     const newIndex = this.clone();
@@ -130,7 +130,7 @@ class ResourceIndex {
    *
    * @private
    * @param {Object} filters Filters as you would use them in the `q` object with the API.
-   * @returns {ResourceIndex} A new index with updated filters
+   * @returns {ResourcesIndex} A new index with updated filters
    */
   where(filters) {
     const newIndex = this.clone();
@@ -196,4 +196,4 @@ class ResourceIndex {
   }
 }
 
-export default ResourceIndex;
+export default ResourcesIndex;

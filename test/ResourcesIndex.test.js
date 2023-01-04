@@ -1,6 +1,6 @@
 import Client from '../src/Client';
 import Resource from '../src/Resource';
-import ResourceIndex from '../src/ResourceIndex';
+import ResourcesIndex from '../src/ResourcesIndex';
 import Project from '../src/Project';
 
 beforeEach(() => {
@@ -11,51 +11,51 @@ class Foo extends Resource {
   static pathName = 'allthefoos';
 }
 
-class FoosIndex extends ResourceIndex {
+class FoosIndex extends ResourcesIndex {
   static resource = Foo;
 }
 
-describe('ResourceIndex', () => {
+describe('ResourcesIndex', () => {
   describe('constructor', () => {
     it('enforces project to be given', () => {
-      expect(() => new ResourceIndex()).toThrow(TypeError);
+      expect(() => new ResourcesIndex()).toThrow(TypeError);
     });
 
     it('enforces project to be of the proper type', () => {
-      expect(() => new ResourceIndex({ a: 42 })).toThrow(TypeError);
+      expect(() => new ResourcesIndex({ a: 42 })).toThrow(TypeError);
     });
 
     it('accepts a proper project', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      expect(resourceIndex).toBeInstanceOf(ResourceIndex);
-      expect(Object.is(resourceIndex.project, project)).toBe(true);
+      const resourcesIndex = new ResourcesIndex(project);
+      expect(resourcesIndex).toBeInstanceOf(ResourcesIndex);
+      expect(Object.is(resourcesIndex.project, project)).toBe(true);
     });
 
     it('sets default pagination', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      expect(resourceIndex.pagination.current).toEqual(1);
-      expect(resourceIndex.pagination.per).toBeUndefined();
+      const resourcesIndex = new ResourcesIndex(project);
+      expect(resourcesIndex.pagination.current).toEqual(1);
+      expect(resourcesIndex.pagination.per).toBeUndefined();
     });
   });
 
   describe('.clone', () => {
     it('creates a clone', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      resourceIndex.filters = { a: 7 };
-      resourceIndex.pagination.current = 3;
-      resourceIndex.pagination.per = 13;
-      resourceIndex.collection = [1, 2, 3];
-      const clone = resourceIndex.clone();
-      resourceIndex.filters.a = 0;
-      resourceIndex.pagination.current = 4;
-      resourceIndex.pagination.per = 10;
+      const resourcesIndex = new ResourcesIndex(project);
+      resourcesIndex.filters = { a: 7 };
+      resourcesIndex.pagination.current = 3;
+      resourcesIndex.pagination.per = 13;
+      resourcesIndex.collection = [1, 2, 3];
+      const clone = resourcesIndex.clone();
+      resourcesIndex.filters.a = 0;
+      resourcesIndex.pagination.current = 4;
+      resourcesIndex.pagination.per = 10;
 
-      expect(clone).toBeInstanceOf(ResourceIndex);
-      expect(Object.is(clone, resourceIndex)).toBe(false);
-      expect(Object.is(clone.project, resourceIndex.project)).toBe(true);
+      expect(clone).toBeInstanceOf(ResourcesIndex);
+      expect(Object.is(clone, resourcesIndex)).toBe(false);
+      expect(Object.is(clone.project, resourcesIndex.project)).toBe(true);
       expect(clone.filters).toEqual({ a: 7 });
       expect(clone.pagination).toEqual({ current: 3, per: 13 });
       expect(clone.collection).toHaveLength(0);
@@ -65,9 +65,9 @@ describe('ResourceIndex', () => {
   describe('.page', () => {
     it('creates a clone targeting another page', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      expect(resourceIndex.pagination.current).toEqual(1);
-      const clone = resourceIndex.page(3);
+      const resourcesIndex = new ResourcesIndex(project);
+      expect(resourcesIndex.pagination.current).toEqual(1);
+      const clone = resourcesIndex.page(3);
       expect(clone.pagination.current).toEqual(3);
     });
   });
@@ -75,9 +75,9 @@ describe('ResourceIndex', () => {
   describe('.per', () => {
     it('creates a clone targeting a different page size', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      expect(resourceIndex.pagination.per).toBeUndefined();
-      const clone = resourceIndex.per(7);
+      const resourcesIndex = new ResourcesIndex(project);
+      expect(resourcesIndex.pagination.per).toBeUndefined();
+      const clone = resourcesIndex.per(7);
       expect(clone.pagination.per).toEqual(7);
     });
   });
@@ -85,9 +85,9 @@ describe('ResourceIndex', () => {
   describe('.where', () => {
     it('creates a clone with updated filters', () => {
       const project = new Project();
-      const resourceIndex = new ResourceIndex(project);
-      resourceIndex.filters = { a: 7 };
-      const clone1 = resourceIndex.where({ b: 3 });
+      const resourcesIndex = new ResourcesIndex(project);
+      resourcesIndex.filters = { a: 7 };
+      const clone1 = resourcesIndex.where({ b: 3 });
       expect(clone1.filters).toEqual({ a: 7, b: 3 });
       const clone2 = clone1.where({ a: 5, c: 9 });
       expect(clone2.filters).toEqual({ a: 5, b: 3, c: 9 });

@@ -1,13 +1,13 @@
 import Scene from './Scene';
-import ResourceIndex from './ResourceIndex';
+import ResourcesIndex from './ResourcesIndex';
 
 /**
  * @class ScenesIndex
- * @see {@link ResourceIndex}
+ * @see {@link ResourcesIndex}
  */
-class ScenesIndex extends ResourceIndex {
+class ScenesIndex extends ResourcesIndex {
   /**
-   * @see {@link ResourceIndex#resource}
+   * @see {@link ResourcesIndex#resource}
    */
   static resource = Scene;
 }
