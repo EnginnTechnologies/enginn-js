@@ -10,3 +10,6 @@
 
 # VS Code
 .vscode
+
+# localhost
+/test/Localhost.test.js
