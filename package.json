@@ -1,0 +1,26 @@
+{
+  "name": "enginn-api",
+  "version": "0.1.0",
+  "description": "Official Enginn API wrapper for Javascript",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/EnginnTechnologies/enginn-js",
+    "type": "git"
+  },
+  "author": "Enginn Technologies <mail@enginn.tech>",
+  "license": "MIT",
+  "scripts": {
+    "doc": "jsdoc src -c jsdoc.conf.json",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdoc": "^4.0.0"
+  },
+  "dependencies": {
+  }
+}
