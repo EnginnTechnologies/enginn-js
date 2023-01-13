@@ -157,7 +157,13 @@ describe('Client', () => {
   describe('.projects', () => {
     const client = new Client();
     const projects = client.projects();
-    expect(projects).toBeInstanceOf(ProjectsIndex);
-    expect(Object.is(projects.client, client)).toBe(true);
+
+    it('returns a ProjectsIndex', () => {
+      expect(projects).toBeInstanceOf(ProjectsIndex);
+    });
+
+    it('uses the same Client instance', () => {
+      expect(Object.is(projects.client, client)).toBe(true);
+    });
   });
 });
