@@ -1,3 +1,4 @@
+import LinesIndex from './LinesIndex';
 import Resource from './Resource';
 import TakesIndex from './TakesIndex';
 
@@ -15,6 +16,15 @@ class Character extends Resource {
    * @see {@link Resource#resourceName}
    */
   static resourceName = 'character';
+
+  /**
+   * Retrieve the lines of that character.
+   *
+   * @return {LinesIndex}
+   */
+  lines() {
+    return new LinesIndex(this.project).where({ character_id_eq: this.attributes.id });
+  }
 
   /**
    * Retrieve the takes of that character.

@@ -17,14 +17,24 @@ class Utils {
   }
 
   static buildQueryParams(params) {
+    if (!params) return '';
+
+    let getPairElements = (key, value, keys = []) => {
+      if (typeof value === 'object')
+        return getPairs(value, [...keys, key]);
+      else
+        return [[[...keys, key], value]];
+    };
     let getPairs = (obj, keys = []) => {
-      return Object.entries(obj).reduce((pairs, [key, value]) => {
-        if (typeof value === 'object')
-          pairs.push(...getPairs(value, [...keys, key]));
-        else
-          pairs.push([[...keys, key], value]);
-        return pairs;
-      }, []);
+      if (Array.isArray(obj)) {
+        return obj.reduce((pairs, value) => {
+          return pairs.concat(getPairElements('', value, keys));
+        }, []);
+      } else {
+        return Object.entries(obj).reduce((pairs, [key, value]) => {
+          return pairs.concat(getPairElements(key, value, keys));
+        }, []);
+      }
     };
 
     return getPairs(params).map(([[key0, ...keysRest], value]) => {
