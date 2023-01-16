@@ -24,4 +24,13 @@ describe('Line', () => {
       expect(takes.filters).toEqual({ line_id_eq: 17 });
     });
   });
+
+  describe('.downloadUrl', () => {
+    const project = new Project();
+    const line = new Line(project, { id: 17, take_download_url: 'ftp://foo.bar/ok' });
+
+    it('computes a proper URL', () => {
+      expect(line.downloadUrl('xyz', 42, 1234)).toEqual('ftp://foo.bar/ok?format=xyz&resolution=42&sampling_rate=1234');
+    });
+  })
 });

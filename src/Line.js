@@ -1,5 +1,6 @@
 import Resource from './Resource';
 import TakesIndex from './TakesIndex';
+import Utils from './Utils';
 
 /**
  * @class Line
@@ -23,6 +24,20 @@ class Line extends Resource {
    */
   takes() {
     return new TakesIndex(this.project).where({ line_id_eq: this.attributes.id });
+  }
+
+  /**
+   * Computes a download URL
+   *
+   * @return {string}
+   */
+  downloadUrl(format, resolution, samplingRate) {
+    const urlParams = {
+      format,
+      resolution,
+      sampling_rate: samplingRate
+    };
+    return `${this.takeDownloadUrl}?${Utils.buildQueryParams(urlParams)}`;
   }
 }
 
