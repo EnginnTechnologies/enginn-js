@@ -9,12 +9,12 @@ class LineTag extends Resource {
   /**
    * @see {@link Resource#pathName}
    */
-  static pathName = 'lines';
+  static pathName = 'line_tags';
 
   /**
    * @see {@link Resource#resourceName}
    */
-  static resourceName = 'line';
+  static resourceName = 'line_tag';
 
   /**
    * Retrieve the lines tagged with this tag.

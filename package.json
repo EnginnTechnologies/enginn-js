@@ -1,6 +1,6 @@
 {
   "name": "enginn-api",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Official Enginn API wrapper for Javascript",
   "main": "index.js",
   "repository": {

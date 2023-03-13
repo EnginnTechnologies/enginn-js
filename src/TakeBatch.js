@@ -14,7 +14,7 @@ class TakeBatch extends Resource {
   /**
    * @see {@link Resource#resourceName}
    */
-  static resourceName = 'take_batche';
+  static resourceName = 'take_batch';
 
   /**
    * Retrieve the takes of that batch.
