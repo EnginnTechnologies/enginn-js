@@ -5,10 +5,9 @@ class EnginnError extends Error {
     this.response = response;
   }
 
-  details() {
-    return new Promise(resolve => {
-      this.response.json().then((body) => { resolve(body.errors) });
-    })
+  async details() {
+    const body = this.response.json()
+    return body.errors
   }
 }
 
