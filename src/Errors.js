@@ -1,7 +1,14 @@
 class EnginnError extends Error {
-  constructor(message) {
-    super(message);
+  constructor(response) {
+    super(response.statusText);
     this.name = this.constructor.name;
+    this.response = response;
+  }
+
+  details() {
+    return new Promise(resolve => {
+      this.response.json().then((body) => { resolve(body.errors) });
+    })
   }
 }
 
@@ -21,27 +28,27 @@ class NilStatusError extends ServerError { }
 const fetchResponseError = (response) => {
   switch (response.status) {
     case 400:
-      return new BadRequestError(response.statusText);
+      return new BadRequestError(response);
     case 401:
-      return new UnauthorizedError(response.statusText);
+      return new UnauthorizedError(response);
     case 403:
-      return new ForbiddenError(response.statusText);
+      return new ForbiddenError(response);
     case 404:
-      return new ResourceNotFound(response.statusText);
+      return new ResourceNotFound(response);
     case 407:
-      return new ProxyAuthError(response.statusText);
+      return new ProxyAuthError(response);
     case 409:
-      return new ConflictError(response.statusText);
+      return new ConflictError(response);
     case 422:
-      return new UnprocessableEntityError(response.statusText);
+      return new UnprocessableEntityError(response);
   }
   if(response.status > 400 & response.status < 500) {
-    return new ClientError(response.statusText);
+    return new ClientError(response);
   }
   if(response.status > 500 & response.status < 600) {
-    return new ServerError(response.statusText);
+    return new ServerError(response);
   }
-  return new NilStatusError(response.statusText);
+  return new NilStatusError(response);
 }
 
 export default {
