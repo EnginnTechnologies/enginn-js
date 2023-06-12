@@ -6,8 +6,8 @@ class EnginnError extends Error {
   }
 
   async details() {
-    const body = await this.response.json()
-    return body.errors
+    this.responseBody ||= await this.response.json()
+    return this.responseBody.errors
   }
 }
 
