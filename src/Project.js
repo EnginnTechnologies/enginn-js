@@ -119,7 +119,7 @@ class Project extends Resource {
    * @see {@link Resource#_route}
    */
   _route() {
-    return `${this.constructor.pathName}/${this.attributes.id}`;
+    return `${this.constructor.pathName}/${this.attributes.id || ''}`;
   }
 }
 
