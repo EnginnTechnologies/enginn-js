@@ -1,12 +1,12 @@
-import Resource from './Resource';
-import CharactersIndex from './CharactersIndex';
-import DictionaryEntriesIndex from './DictionaryEntriesIndex';
-import LinesIndex from './LinesIndex';
-import LineTagsIndex from './LineTagsIndex';
-import ScenesIndex from './ScenesIndex';
-import SynthesisExportsIndex from './SynthesisExportsIndex';
-import TakeBatchesIndex from './TakeBatchesIndex';
-import TakesIndex from './TakesIndex';
+import Resource from './Resource.js';
+import CharactersIndex from './CharactersIndex.js';
+import DictionaryEntriesIndex from './DictionaryEntriesIndex.js';
+import LinesIndex from './LinesIndex.js';
+import LineTagsIndex from './LineTagsIndex.js';
+import ScenesIndex from './ScenesIndex.js';
+import SynthesisExportsIndex from './SynthesisExportsIndex.js';
+import TakeBatchesIndex from './TakeBatchesIndex.js';
+import TakesIndex from './TakesIndex.js';
 
 /**
  * @class Project

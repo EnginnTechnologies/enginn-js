@@ -1,5 +1,5 @@
-import LineTag from './LineTag';
-import ResourcesIndex from './ResourcesIndex';
+import LineTag from './LineTag.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class LineTagsIndex

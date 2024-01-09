@@ -1,5 +1,5 @@
-import Resource from './Resource';
-import LinesIndex from './LinesIndex';
+import Resource from './Resource.js';
+import LinesIndex from './LinesIndex.js';
 
 /**
  * @class Scene

@@ -1,5 +1,5 @@
-import Resource from './Resource';
-import TakesIndex from './TakesIndex';
+import Resource from './Resource.js';
+import TakesIndex from './TakesIndex.js';
 
 /**
  * @class TakeBatch

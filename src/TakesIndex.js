@@ -1,5 +1,5 @@
-import Take from './Take';
-import ResourcesIndex from './ResourcesIndex';
+import Take from './Take.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class TakesIndex

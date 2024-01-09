@@ -1,5 +1,5 @@
-import SynthesisExport from './SynthesisExport';
-import ResourcesIndex from './ResourcesIndex';
+import SynthesisExport from './SynthesisExport.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class SynthesisExportsIndex
