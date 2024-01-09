@@ -1,5 +1,5 @@
-import Character from './Character';
-import ResourcesIndex from './ResourcesIndex';
+import Character from './Character.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class CharactersIndex

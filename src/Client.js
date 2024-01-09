@@ -1,6 +1,6 @@
-import Errors from './Errors';
-import ProjectsIndex from './ProjectsIndex';
-import Utils from './Utils';
+import Errors from './Errors.js';
+import ProjectsIndex from './ProjectsIndex.js';
+import Utils from './Utils.js';
 
 /**
  * @class Client

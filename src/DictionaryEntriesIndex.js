@@ -1,5 +1,5 @@
-import DictionaryEntry from './DictionaryEntry';
-import ResourcesIndex from './ResourcesIndex';
+import DictionaryEntry from './DictionaryEntry.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class DictionaryEntriesIndex

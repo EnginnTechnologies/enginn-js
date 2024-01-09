@@ -1,5 +1,5 @@
-import Project from './Project';
-import ResourcesIndex from './ResourcesIndex';
+import Project from './Project.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class ProjectsIndex

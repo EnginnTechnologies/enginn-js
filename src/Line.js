@@ -1,6 +1,6 @@
-import Resource from './Resource';
-import TakesIndex from './TakesIndex';
-import Utils from './Utils';
+import Resource from './Resource.js';
+import TakesIndex from './TakesIndex.js';
+import Utils from './Utils.js';
 
 /**
  * @class Line

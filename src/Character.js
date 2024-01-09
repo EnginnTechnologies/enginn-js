@@ -1,6 +1,6 @@
-import LinesIndex from './LinesIndex';
-import Resource from './Resource';
-import TakesIndex from './TakesIndex';
+import LinesIndex from './LinesIndex.js';
+import Resource from './Resource.js';
+import TakesIndex from './TakesIndex.js';
 
 /**
  * @class Character

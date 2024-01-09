@@ -9,6 +9,7 @@
   },
   "author": "Enginn Technologies <mail@enginn.tech>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "doc": "jsdoc src -c jsdoc.conf.json",
     "test": "jest"

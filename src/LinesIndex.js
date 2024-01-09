@@ -1,5 +1,5 @@
-import Line from './Line';
-import ResourcesIndex from './ResourcesIndex';
+import Line from './Line.js';
+import ResourcesIndex from './ResourcesIndex.js';
 
 /**
  * @class LinesIndex
